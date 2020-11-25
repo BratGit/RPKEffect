@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">RPKEffect</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">RPK Effect</string>
+    <string name="nav_header_subtitle">ensofdecode@posteffect.ru</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="transition">auth_reg_transition</string>
+
+    <string name="element_id">ID элемента</string>
+    <string name="end_user_price">Цена</string>
+    <string name="amount">Количество</string>
+    <string name="product_id">ID продукта</string>
+    <string name="successfully">Is Successful</string>
+
+    <string name="menu_first">Поставщик 1</string>
+    <string name="menu_sec">Поставщик 2</string>
+    <string name="menu_third">Поставщик 3</string>
+    <string name="profile">Профиль</string>
+    <string name="about_app">Система контроля \nобновления остатков</string>
+
+    <string name="check">Проверить</string>
+    <string name="confirmed">Подтвердить</string>
+    <string name="sign_out">Сменить аккаунт</string>
+    <string name="enter">Войти</string>
+    <string name="exit">Выйти</string>
+    <string name="back">Назад</string>
+    <string name="login">Email</string>
+    <string name="password">Пароль</string>
+    <string name="logo">Лого</string>
+    <string name="date">Дата</string>
+    <string name="ip">IP-адрес</string>
+    <string name="user_list">Список пользователей</string>
+    <string name="registration">Регистрация</string>
+    <string name="authorization">Авторизация</string>
+    <string name="confirm">Подтверждение</string>
+    <string name="reject">Отклонить</string>
+    <string name="cancel">Отменить</string>
+    <string name="added">Пользователь добавлен</string>
+    <string name="to_registrate">Подать заявку</string>
+    <string name="loading">Загрузка</string>
+    <string name="auth_failed">Ошибка авторизации</string>
+    <string name="registration_failed">Возникла ошибка при регистрации</string>
+    <string name="registration_list">Завявки на регистрацию</string>
+    <string name="created_request">Заявка подана</string>
+    <string name="contains_cyrillic">Строка не должна содержать кириллицу</string>
+    <string name="email_incorrect_format">Такой почты не существует!</string>
+    <string name="confirm_check">Проверить подтверждённость</string>
+    <string name="next">Далее</string>
+    <string name="checking">Проверка</string>
+    <string name="close">Закрыть</string>
+    <string name="checking_email">Ваша заявка на рассмотрении</string>
+    <string name="code">Код</string>
+    <string name="article">Артикул</string>
+    <string name="status">Статус</string>
+    <string name="name">Наименование</string>
+    <string name="get_100">Получить 1000 значений</string>
+
+    <string name="non_confirmed">Пароли не совпадают</string>
+    <string name="required">Обязательное поле</string>
+    <string name="via_email">Войти по email</string>
+    <string name="or_auth_with">или авторизоваться с помощью</string>
+</resources>

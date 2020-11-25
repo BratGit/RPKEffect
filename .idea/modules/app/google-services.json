@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "362721225009",
+    "firebase_url": "https://rpkeffect-c4605.firebaseio.com",
+    "project_id": "rpkeffect-c4605",
+    "storage_bucket": "rpkeffect-c4605.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362721225009:android:f69c56cba136f6d69a2810",
+        "android_client_info": {
+          "package_name": "com.example.rpkeffect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362721225009-7hj7kg9jiv7ejck0okkmjuimri9hfcf3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rpkeffect",
+            "certificate_hash": "f50ebe452e8e9357a9e637275dea29c51fb8f9db"
+          }
+        },
+        {
+          "client_id": "362721225009-h2naknfsne5mvuv5g152l45er1fcjvtb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNEQ0_woH5BOI-o1_3awejYmk3DaX68pA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362721225009-h2naknfsne5mvuv5g152l45er1fcjvtb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

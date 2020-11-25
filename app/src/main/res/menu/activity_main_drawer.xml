@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_first"
+            android:icon="@drawable/ic_baseline_cloud_circle_24"
+            android:title="@string/menu_first" />
+        <item
+            android:id="@+id/nav_sec"
+            android:icon="@drawable/ic_baseline_date_range_24"
+            android:title="@string/menu_sec" />
+        <item
+            android:id="@+id/nav_third"
+            android:icon="@drawable/ic_baseline_developer_board_24"
+            android:title="@string/menu_third" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_baseline_account_circle_24"
+            android:title="@string/profile"/>
+        <item
+            android:id="@+id/nav_user_list"
+            android:icon="@drawable/ic_baseline_people_alt_24"
+            android:title="@string/user_list"/>
+        <item
+            android:id="@+id/nav_registrate_list"
+            android:icon="@drawable/ic_baseline_person_add_24"
+            android:title="@string/registration_list"/>
+    </group>
+</menu>

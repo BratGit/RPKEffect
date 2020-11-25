@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/check_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/darkGray"
+        tools:ignore="UselessParent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/close"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_background_next"
+                android:contentDescription="@string/close"
+                android:src="@drawable/ic_baseline_close_24_white" />
+
+            <Button
+                android:id="@+id/next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/button_background_next"
+                android:text="@string/check"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-light"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"/>
+
+        </RelativeLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:textColorHint="@color/lightGray">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/check_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/login"
+                android:fontFamily="sans-serif-light"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHint="@color/lightGray" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
