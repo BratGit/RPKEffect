@@ -1,6 +1,7 @@
 package com.example.rpkeffect.Fragments;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -26,23 +27,29 @@ import com.example.rpkeffect.Adapters.RequestAdapter;
 import com.example.rpkeffect.Constructors.Product;
 import com.example.rpkeffect.Constructors.Request;
 import com.example.rpkeffect.Interfaces.AsyncOutputListener;
+import com.example.rpkeffect.Interfaces.JsonInfoListener;
 import com.example.rpkeffect.Interfaces.JsonTaskListener;
 import com.example.rpkeffect.R;
 import com.example.rpkeffect.Utils.AsyncOutput;
+import com.example.rpkeffect.Utils.JsonInfo;
 import com.example.rpkeffect.Utils.JsonTask;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirstProviderFragment extends Fragment implements JsonTaskListener, AsyncOutputListener {
+public class FirstProviderFragment extends Fragment implements JsonTaskListener, JsonInfoListener {
     private static final String TAG = "myLog";
+
+    public ProgressDialog mProgressDialog;
     public static ListView listView;
     public List<Product> mProducts;
     public ProductAdapter adapter;
-    Button getJson;
+    FloatingActionButton getJson;
+    FloatingActionButton getInfo;
     ProgressBar progressBar;
     Handler h;
     int value;
@@ -55,15 +62,20 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
     final int STATUS_SET_VISIBILITY = 0;
     final int STATUS_SET_PROGRESS = 1;
     final int STATUS_GET_PRODUCT = 2;
+    final int STATUS_START_GETTING_INFO = 3;
+    final int STATUS_FINISH_GETTING_INFO = 4;
 
     public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_first, container, false);
         listView = root.findViewById(R.id.fst_listview);
         getJson = root.findViewById(R.id.get_json_btn);
+        getInfo = root.findViewById(R.id.get_info_btn);
         progressBar = root.findViewById(R.id.progress_bar);
         mProducts = new ArrayList<>();
         adapter = new ProductAdapter(getLayoutInflater(), mProducts);
         listView.setAdapter(adapter);
+
+        getJson.attachToListView(listView);
 
         dialog = new Dialog(getActivity());
         dialog
@@ -103,6 +115,12 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
                         mProducts.add(mProduct);
                         adapter.notifyDataSetChanged();
                         break;
+                    case STATUS_START_GETTING_INFO:
+                        showProgressDialog();
+                        break;
+                    case STATUS_FINISH_GETTING_INFO:
+                        hideProgressDialog();
+                        break;
                 }
             }
         };
@@ -110,15 +128,20 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         getJson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JsonTask jsonTask = new JsonTask();
-                jsonTask.setListener(FirstProviderFragment.this);
-                jsonTask.setMin(jsonMin);
-                jsonTask.setMax(jsonMax);
-                jsonTask.execute("https://effect-gifts.ru/api/?action=getHappyLogs");
-                jsonMax += 1000;
-                jsonMax += 1000;
+                getValues();
             }
         });
+
+        getInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JsonInfo info = new JsonInfo();
+                info.setListener(FirstProviderFragment.this);
+                info.execute("https://effect-gifts.ru/api/?action=getHappyLogs");
+            }
+        });
+
+        getValues();
 
         return root;
     }
@@ -147,9 +170,14 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         dialog.show();
     }
 
-    public void onSuccess(String result) {
-        AsyncOutput output = new AsyncOutput();
-        output.execute(result);
+    private void getValues(){
+        JsonTask jsonTask = new JsonTask();
+        jsonTask.setListener(FirstProviderFragment.this);
+        jsonTask.setMin(jsonMin);
+        jsonTask.setMax(jsonMax);
+        jsonTask.execute("https://effect-gifts.ru/api/?action=getHappyLogs");
+        jsonMin += 1000;
+        jsonMax += 1000;
     }
 
     @Override
@@ -161,7 +189,6 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
     public void onAddProduct(Product product) {
         mProduct = product;
         h.sendEmptyMessage(STATUS_GET_PRODUCT);
-        Log.d(TAG, "onAddProduct: " + mProduct.getName());
     }
 
     @Override
@@ -183,16 +210,43 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         h.sendEmptyMessage(STATUS_SET_VISIBILITY);
     }
 
-    @Override
-    public void onPostExecute(List<Product> products) {
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(getActivity());
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+        mProgressDialog.show();
+    }
 
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
     }
 
     @Override
-    public void onUpdateListener(int value, int max) {
-        progressBar.setVisibility(View.VISIBLE);
-        progressBar.setMax(max);
-        progressBar.setProgress(value);
+    public void onStartListener() {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                h.sendEmptyMessage(STATUS_START_GETTING_INFO);
+            }
+        };
+        thread.start();
+    }
+
+    @Override
+    public void onFinishListener() {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                h.sendEmptyMessage(STATUS_FINISH_GETTING_INFO);
+            }
+        };
+        thread.start();
     }
 }
 

@@ -101,7 +101,7 @@ public class JsonTask extends AsyncTask<String, String, String> {
                 }
             }
             listener.onSuccessListener(products);
-            Log.d("myLog", "doInBackground: max = " + max);
+
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

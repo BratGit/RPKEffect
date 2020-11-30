@@ -9,4 +9,5 @@ public interface JsonTaskListener {
     void onUpdateProgressBarListener(int progress);
     void onSetMaxProgressBar(int max);
     void onAddProduct(Product product);
+
 }
