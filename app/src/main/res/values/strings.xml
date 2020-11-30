@@ -55,7 +55,10 @@
     <string name="article">Артикул</string>
     <string name="status">Статус</string>
     <string name="name">Наименование</string>
-    <string name="get_100">Получить 1000 значений</string>
+    <string name="success">Успешно</string>
+    <string name="fail">Ошибок</string>
+    <string name="total">Всего</string>
+    
 
     <string name="non_confirmed">Пароли не совпадают</string>
     <string name="required">Обязательное поле</string>

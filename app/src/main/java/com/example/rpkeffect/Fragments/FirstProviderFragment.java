@@ -2,6 +2,7 @@ package com.example.rpkeffect.Fragments;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,15 +23,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.charts.Pie;
 import com.example.rpkeffect.Adapters.ProductAdapter;
 import com.example.rpkeffect.Adapters.RequestAdapter;
 import com.example.rpkeffect.Constructors.Product;
 import com.example.rpkeffect.Constructors.Request;
-import com.example.rpkeffect.Interfaces.AsyncOutputListener;
 import com.example.rpkeffect.Interfaces.JsonInfoListener;
 import com.example.rpkeffect.Interfaces.JsonTaskListener;
 import com.example.rpkeffect.R;
-import com.example.rpkeffect.Utils.AsyncOutput;
 import com.example.rpkeffect.Utils.JsonInfo;
 import com.example.rpkeffect.Utils.JsonTask;
 import com.google.firebase.database.DataSnapshot;
@@ -48,14 +52,17 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
     public static ListView listView;
     public List<Product> mProducts;
     public ProductAdapter adapter;
+    AnyChartView anyChartView;
     FloatingActionButton getJson;
     FloatingActionButton getInfo;
     ProgressBar progressBar;
     Handler h;
     int value;
     int mMax;
+    int success = 0, fail = 0, total = 0;
+    int[] values;
     Product mProduct;
-    Dialog dialog;
+    Dialog dialog, info;
 
     int jsonMin = 0, jsonMax = 100;
 
@@ -76,6 +83,21 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         listView.setAdapter(adapter);
 
         getJson.attachToListView(listView);
+
+        info = new Dialog(getActivity());
+        info
+                .getWindow()
+                .requestFeature(Window.FEATURE_NO_TITLE);
+
+        info
+                .getWindow()
+                .setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        info
+                .getWindow()
+                .setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        info.setCancelable(true);
 
         dialog = new Dialog(getActivity());
         dialog
@@ -120,6 +142,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
                         break;
                     case STATUS_FINISH_GETTING_INFO:
                         hideProgressDialog();
+                        showInfoDialog(getLayoutInflater());
                         break;
                 }
             }
@@ -146,6 +169,18 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         return root;
     }
 
+    private void setupPieChart(){
+        Pie pie = AnyChart.pie();
+        String[] types = {"Успешно", "Ошибки"};
+        int[] values = {success, fail};
+        List<DataEntry> dataEntries = new ArrayList<>();
+        for (int i = 0; i < types.length; i++){
+            dataEntries.add(new ValueDataEntry(types[i], values[i]));
+        }
+        pie.data(dataEntries);
+        anyChartView.setChart(pie);
+    }
+
     private void showDialog(final int position, final LayoutInflater inflater) {
         dialog.setContentView(R.layout.dialog_product);
 
@@ -168,6 +203,24 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         status.setText(mProducts.get(position).getStatus());
 
         dialog.show();
+    }
+
+    private void showInfoDialog(final LayoutInflater inflater) {
+        info.setContentView(R.layout.dialog_fst_info);
+
+        TextView successTV, failTV, totalTV;
+
+        successTV = (TextView) info.findViewById(R.id.fst_success);
+        failTV = (TextView) info.findViewById(R.id.fst_fail);
+        totalTV = (TextView) info.findViewById(R.id.fst_total);
+        anyChartView = info.findViewById(R.id.fst_chart);
+
+        successTV.setText(String.valueOf(success));
+        failTV.setText(String.valueOf(fail));
+        totalTV.setText(String.valueOf(total));
+
+        setupPieChart();
+        info.show();
     }
 
     private void getValues(){
@@ -238,7 +291,10 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
     }
 
     @Override
-    public void onFinishListener() {
+    public void onFinishListener(int success, int fail, int total) {
+        this.success = success;
+        this.fail = fail;
+        this.total = total;
         Thread thread = new Thread() {
             @Override
             public void run() {
