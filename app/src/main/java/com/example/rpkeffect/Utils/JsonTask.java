@@ -99,9 +99,8 @@ public class JsonTask extends AsyncTask<String, String, String> {
                     listener.onAddProduct(product);
                     listener.onUpdateProgressBarListener(outerArrayPos);
                 }
+                listener.onFinish();
             }
-            listener.onSuccessListener(products);
-
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

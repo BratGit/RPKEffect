@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -52,6 +53,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
     public static ListView listView;
     public List<Product> mProducts;
     public ProductAdapter adapter;
+    SwipeRefreshLayout swipeRefreshLayout;
     AnyChartView anyChartView;
     FloatingActionButton getJson;
     FloatingActionButton getInfo;
@@ -60,7 +62,6 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
     int value;
     int mMax;
     int success = 0, fail = 0, total = 0;
-    int[] values;
     Product mProduct;
     Dialog dialog, info;
 
@@ -78,6 +79,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         getJson = root.findViewById(R.id.get_json_btn);
         getInfo = root.findViewById(R.id.get_info_btn);
         progressBar = root.findViewById(R.id.progress_bar);
+        swipeRefreshLayout = root.findViewById(R.id.swipe_refresh_layout);
         mProducts = new ArrayList<>();
         adapter = new ProductAdapter(getLayoutInflater(), mProducts);
         listView.setAdapter(adapter);
@@ -166,9 +168,19 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
 
         getValues();
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getValues();
+            }
+        });
+
+        swipeRefreshLayout.setColorSchemeResources(R.color.red);
+
         return root;
     }
 
+    //Диаграмма
     private void setupPieChart(){
         Pie pie = AnyChart.pie();
         String[] types = {"Успешно", "Ошибки"};
@@ -181,6 +193,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         anyChartView.setChart(pie);
     }
 
+    //Диалоговое окно onItemClick
     private void showDialog(final int position, final LayoutInflater inflater) {
         dialog.setContentView(R.layout.dialog_product);
 
@@ -205,6 +218,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         dialog.show();
     }
 
+    //Диалоговое окно информации о логах
     private void showInfoDialog(final LayoutInflater inflater) {
         info.setContentView(R.layout.dialog_fst_info);
 
@@ -223,6 +237,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         info.show();
     }
 
+    //Получение значений JsonTask
     private void getValues(){
         JsonTask jsonTask = new JsonTask();
         jsonTask.setListener(FirstProviderFragment.this);
@@ -234,14 +249,15 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
     }
 
     @Override
-    public void onSuccessListener(List<Product> products) {
-
-    }
-
-    @Override
     public void onAddProduct(Product product) {
         mProduct = product;
         h.sendEmptyMessage(STATUS_GET_PRODUCT);
+    }
+
+    @Override
+    public void onFinish() {
+        if (swipeRefreshLayout.isRefreshing())
+            swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -263,6 +279,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         h.sendEmptyMessage(STATUS_SET_VISIBILITY);
     }
 
+    //Запуск загрузочного диалога
     public void showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(getActivity());
@@ -272,6 +289,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         mProgressDialog.show();
     }
 
+    //Закрытие
     public void hideProgressDialog() {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();

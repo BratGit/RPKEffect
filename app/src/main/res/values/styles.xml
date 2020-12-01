@@ -3,7 +3,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#FF252F</item>
-        <item name="colorPrimaryDark">@color/red</item>
+        <item name="colorPrimaryDark">#FF252F</item>
         <item name="colorAccent">#C52929</item>
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:navigationBarColor">@color/black</item>
@@ -29,7 +29,7 @@
 
     <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splashscreen</item>
-        <item name="colorPrimaryDark">@color/red</item>
+        <item name="colorPrimaryDark">#FF252F</item>
         <item name="android:navigationBarColor">@color/black</item>
     </style>
 
