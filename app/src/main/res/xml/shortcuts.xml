@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_plus"
+        android:shortcutId="Registration"
+        android:shortcutLongLabel="@string/registration"
+        android:shortcutShortLabel="@string/registration">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.rpkeffect.Activities.RegistrationActivity"
+            android:targetPackage="com.example.rpkeffect" />
+
+    </shortcut>
+
+</shortcuts>

@@ -1,9 +1,11 @@
 package com.example.rpkeffect.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.rpkeffect.R;
 import com.example.rpkeffect.Constructors.User;
@@ -59,7 +61,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         signInAccount = GoogleSignIn.getLastSignedInAccount(this);
-        if (signInAccount == null) {
+        mAuth = FirebaseAuth.getInstance();
+        if (signInAccount == null && mAuth.getCurrentUser() == null){
+            Toast.makeText(this, "Выполните авторизацию!!!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, AuthorizationActivity.class));
+        }
+        else if (signInAccount == null) {
             mAuth = FirebaseAuth.getInstance();
             Log.d(TAG, mAuth.getCurrentUser().toString());
             user = mAuth.getCurrentUser();

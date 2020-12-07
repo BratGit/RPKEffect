@@ -44,7 +44,6 @@ public class JsonTask extends AsyncTask<String, String, String> {
 
     protected String doInBackground(String... params) {
 
-
         HttpURLConnection connection = null;
         BufferedReader reader = null;
 
@@ -95,6 +94,8 @@ public class JsonTask extends AsyncTask<String, String, String> {
                     if (code.equals("")) code = "---";
                     if (article.equals("")) article = "---";
                     Product product = new Product(name, status, article, code);
+                    int i = outerArrayPos;
+                    Log.d("log", "i = " + i);
                     products.add(product);
                     listener.onAddProduct(product);
                     listener.onUpdateProgressBarListener(outerArrayPos);
