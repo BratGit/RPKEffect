@@ -59,10 +59,7 @@ public class JsonInfo extends AsyncTask<String, String, String> {
             JSONArray array = new JSONArray(buffer.toString());
 
             int errors = countMatches(buffer.toString(), "\"9\"");
-            Log.d(TAG, "Ошибок: " + errors);
             int success = countMatches(buffer.toString(), "\"10\"");
-            Log.d(TAG, "Успешно: " + success);
-            Log.d(TAG, "Всего: " + (int)(errors + success));
             listener.onFinishListener(success, errors, (int)(errors+success));
 
         } catch (MalformedURLException e) {

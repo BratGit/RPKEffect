@@ -48,7 +48,18 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-
+        <receiver
+            android:name=".Widgets.HappyLogsWidget">
+            <intent-filter>
+                <action
+                    android:name="android.appwidget.action.APPWIDGET_UPDATE">
+                </action>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_happylogs_metadata">
+            </meta-data>
+        </receiver>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
