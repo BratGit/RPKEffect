@@ -9,17 +9,35 @@
     android:orientation="vertical"
     tools:context=".Fragments.FirstProviderFragment">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/fst_listview"
+        <Spinner
+            android:id="@+id/spinner_filter"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@drawable/blue_outline"
+            android:popupBackground="@drawable/blue_outline"
+            android:spinnerMode="dropdown"
+            android:entries="@array/filter_type"
+            tools:listitem="@layout/item_filter_spinner"/>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ListView
+                android:id="@+id/fst_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
 
 
     <ProgressBar

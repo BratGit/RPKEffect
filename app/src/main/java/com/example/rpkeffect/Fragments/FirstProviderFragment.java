@@ -14,10 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +61,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
     FloatingActionButton getJson;
     FloatingActionButton getInfo;
     ProgressBar progressBar;
+    Spinner spinner;
     Handler h;
     int value;
     int mMax;
@@ -71,8 +74,15 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
     final int STATUS_SET_VISIBILITY = 0;
     final int STATUS_SET_PROGRESS = 1;
     final int STATUS_GET_PRODUCT = 2;
+    final int STATUS_FINISH = 5;
     final int STATUS_START_GETTING_INFO = 3;
     final int STATUS_FINISH_GETTING_INFO = 4;
+
+    final int FILTER_DEFAULT = 0;
+    final int FILTER_ERRORS = 1;
+    final int FILTER_SUCCESS = 2;
+
+    int selectedFilter = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_first, container, false);
@@ -80,10 +90,28 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         getJson = root.findViewById(R.id.get_json_btn);
         getInfo = root.findViewById(R.id.get_info_btn);
         progressBar = root.findViewById(R.id.progress_bar);
+        spinner = root.findViewById(R.id.spinner_filter);
         swipeRefreshLayout = root.findViewById(R.id.swipe_refresh_layout);
         mProducts = new ArrayList<>();
         adapter = new ProductAdapter(getLayoutInflater(), mProducts);
         listView.setAdapter(adapter);
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mProducts.clear();
+                adapter.notifyDataSetChanged();
+                Toast.makeText(getActivity(), spinner.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                selectedFilter = position;
+                getValues(selectedFilter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                selectedFilter = FILTER_DEFAULT;
+            }
+        });
 
         getJson.attachToListView(listView);
 
@@ -147,6 +175,9 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
                         hideProgressDialog();
                         showInfoDialog(getLayoutInflater());
                         break;
+                    case STATUS_FINISH:
+                        progressBar.setVisibility(View.GONE);
+                        break;
                 }
             }
         };
@@ -154,7 +185,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         getJson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getValues();
+                getValues(selectedFilter);
             }
         });
 
@@ -167,12 +198,12 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
             }
         });
 
-        getValues();
+        getValues(selectedFilter);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getValues();
+                getValues(selectedFilter);
             }
         });
 
@@ -239,11 +270,12 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
     }
 
     //Получение значений JsonTask
-    private void getValues(){
+    private void getValues(int FILTER_TYPE){
         JsonTask jsonTask = new JsonTask();
         jsonTask.setListener(FirstProviderFragment.this);
         jsonTask.setMin(jsonMin);
         jsonTask.setMax(jsonMax);
+        jsonTask.setFilterType(FILTER_TYPE);
         jsonTask.execute("https://effect-gifts.ru/api/?action=getHappyLogs");
         jsonMin += 1000;
         jsonMax += 1000;
@@ -259,6 +291,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
     public void onFinish() {
         if (swipeRefreshLayout.isRefreshing())
             swipeRefreshLayout.setRefreshing(false);
+        h.sendEmptyMessage(STATUS_FINISH);
     }
 
     @Override

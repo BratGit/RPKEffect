@@ -25,6 +25,11 @@ public class JsonTask extends AsyncTask<String, String, String> {
     List<Product> products;
 
     int min = 0, max = 1000;
+    int filterType = 0;
+
+    public void setFilterType(int filterType) {
+        this.filterType = filterType;
+    }
 
     public void setMin(int min){
         this.min = min;
@@ -88,17 +93,36 @@ public class JsonTask extends AsyncTask<String, String, String> {
                             article = valueAtIndex;
                             break;
                     }
+                    Product product;
                     if (status.equals("")) status = "---";
                     if (status.equals("10")) name = "Нет товара";
                     if (name.equals("")) name = "---";
                     if (code.equals("")) code = "---";
                     if (article.equals("")) article = "---";
-                    Product product = new Product(name, status, article, code);
-                    int i = outerArrayPos;
-                    Log.d("log", "i = " + i);
-                    products.add(product);
-                    listener.onAddProduct(product);
-                    listener.onUpdateProgressBarListener(outerArrayPos);
+                    switch (filterType) {
+                        case 0:
+                            product = new Product(name, status, article, code);
+                            products.add(product);
+                            listener.onAddProduct(product);
+                            listener.onUpdateProgressBarListener(outerArrayPos);
+                            break;
+                        case 1:
+                            if (status.equals("10")) {
+                                product = new Product(name, status, article, code);
+                                products.add(product);
+                                listener.onAddProduct(product);
+                                listener.onUpdateProgressBarListener(outerArrayPos);
+                            }
+                            break;
+                        case 2:
+                            if (!status.equals("10")){
+                                product = new Product(name, status, article, code);
+                                products.add(product);
+                                listener.onAddProduct(product);
+                                listener.onUpdateProgressBarListener(outerArrayPos);
+                            }
+                    }
+
                 }
                 listener.onFinish();
             }

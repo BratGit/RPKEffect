@@ -64,4 +64,10 @@
     <string name="required">Обязательное поле</string>
     <string name="via_email">Войти по email</string>
     <string name="or_auth_with">или авторизоваться с помощью</string>
+
+    <string-array name="filter_type">
+        <item>По умолчанию</item>
+        <item>Показывать только ошибки</item>
+        <item>Показывать только успешные</item>
+    </string-array>
 </resources>

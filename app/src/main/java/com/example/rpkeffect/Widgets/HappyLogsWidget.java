@@ -27,7 +27,6 @@ public class HappyLogsWidget extends AppWidgetProvider implements JsonInfoListen
             updateWidget(context, appWidgetManager, i);
             this.appWidgetManager = appWidgetManager;
             id = appWidgetIds;
-            Log.d(TAG, "onUpdate: i " + i);
         }
     }
 
@@ -46,9 +45,6 @@ public class HappyLogsWidget extends AppWidgetProvider implements JsonInfoListen
         PendingIntent pIntent = PendingIntent.getBroadcast(ctx, widgetId, updateIntent, 0);
         widgetView.setOnClickPendingIntent(R.id.refresh, pIntent);
         appWidgetManager.updateAppWidget(widgetId, widgetView);
-        Log.d(TAG, "updateWidget: success " + mSuccess);
-        Log.d(TAG, "updateWidget: fail " + mFail);
-        Log.d(TAG, "updateWidget: total " + mTotal);
     }
 
     private void getJson() {
@@ -67,7 +63,6 @@ public class HappyLogsWidget extends AppWidgetProvider implements JsonInfoListen
         mSuccess = success;
         mFail = fail;
         mTotal = total;
-        Log.d(TAG, "onFinishListener: total " + mTotal);
         widgetView.setTextViewText(R.id.success, String.valueOf(mSuccess));
         widgetView.setTextViewText(R.id.fail, String.valueOf(mFail));
         widgetView.setTextViewText(R.id.total, String.valueOf(mTotal));
