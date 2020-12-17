@@ -3,15 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@color/darkGray"
+    android:background="@color/white"
     android:layout_marginStart="5dp">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
-        android:textColor="@color/colorPrimaryDark"
+        android:fontFamily="@font/sfui_regular"
+        android:textColor="@color/sea"
         android:text="@string/name"
         android:textSize="18sp"/>
 
@@ -19,8 +19,8 @@
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
-        android:textColor="@color/white"
+        android:fontFamily="sfui_regular"
+        android:textColor="@color/textBlack"
         android:text="@string/status"
         android:textSize="18sp"/>
 
@@ -28,8 +28,8 @@
         android:id="@+id/article"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
-        android:textColor="@color/white"
+        android:fontFamily="sfui_regular"
+        android:textColor="@color/textBlack"
         android:text="@string/article"
         android:textSize="18sp"/>
 
@@ -37,8 +37,8 @@
         android:id="@+id/code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
-        android:textColor="@color/white"
+        android:fontFamily="sfui_regular"
+        android:textColor="@color/textBlack"
         android:text="@string/code"
         android:textSize="18sp"/>
 

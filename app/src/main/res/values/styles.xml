@@ -2,11 +2,13 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#FF252F</item>
-        <item name="colorPrimaryDark">#FF252F</item>
-        <item name="colorAccent">#C52929</item>
+        <item name="colorPrimary">@color/cherry</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/sea</item>
         <item name="android:windowActivityTransitions">true</item>
-        <item name="android:navigationBarColor">@color/black</item>
+        <item name="android:navigationBarColor">@color/white</item>
+<!--        <item name="android:windowLightStatusBar">true</item>-->
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -29,24 +31,30 @@
 
     <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splashscreen</item>
-        <item name="colorPrimaryDark">#FF252F</item>
-        <item name="android:navigationBarColor">@color/black</item>
+        <item name="colorPrimaryDark">@color/lightGray</item>
+        <item name="android:navigationBarColor">@color/lightGray</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="Theme.FirstActivity" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowActivityTransitions">true</item>
-    </style>
+<!--    <style name="Theme.FirstActivity" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        <item name="android:windowActivityTransitions">true</item>-->
+<!--    </style>-->
 
-    <style name="Theme.SecondActivity" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowActivityTransitions">true</item>
+<!--    <style name="Theme.SecondActivity" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        <item name="android:windowActivityTransitions">true</item>-->
 
-        <item name="android:windowSharedElementEnterTransition">
-            @transition/auth_reg_transition
-        </item>
+<!--        <item name="android:windowSharedElementEnterTransition">-->
+<!--            @transition/auth_reg_transition-->
+<!--        </item>-->
 
-        <item name="android:windowSharedElementExitTransition">
-            @transition/auth_reg_transition
-        </item>
+<!--        <item name="android:windowSharedElementExitTransition">-->
+<!--            @transition/auth_reg_transition-->
+<!--        </item>-->
+<!--    </style>-->
+
+    <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">#fff</item>
     </style>
 
 </resources>

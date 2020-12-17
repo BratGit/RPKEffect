@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="6dp">
+        android:layout_marginTop="12dp">
 
         <ImageView
             android:layout_width="25dp"
@@ -23,8 +23,8 @@
             android:text="@string/menu_first"
             android:layout_marginStart="10dp"
             android:layout_gravity="center_vertical"
-            android:textColor="@color/red"
-            android:fontFamily="sans-serif-light"/>
+            android:textColor="@color/cherry"
+            android:fontFamily="@font/sfui_bold"/>
 
     </LinearLayout>
 
@@ -38,18 +38,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_semibold"
             android:text="@string/success"
-            android:textColor="@color/green"
+            android:textColor="@color/turquoise"
             android:textSize="17sp" />
 
         <TextView
             android:id="@+id/success"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_regular"
             android:text="@string/success"
-            android:textColor="@color/green"
+            android:textColor="@color/turquoise"
             android:textSize="17sp" />
 
     </LinearLayout>
@@ -64,18 +64,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_semibold"
             android:text="@string/fail"
-            android:textColor="@color/red"
+            android:textColor="@color/cherry"
             android:textSize="17sp" />
 
         <TextView
             android:id="@+id/fail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_regular"
             android:text="@string/fail"
-            android:textColor="@color/red"
+            android:textColor="@color/cherry"
             android:textSize="17sp" />
 
     </LinearLayout>
@@ -91,18 +91,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_semibold"
             android:text="@string/total"
-            android:textColor="@color/yellow"
+            android:textColor="@color/sea"
             android:textSize="17sp" />
 
         <TextView
             android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_regular"
             android:text="@string/total"
-            android:textColor="@color/yellow"
+            android:textColor="@color/sea"
             android:textSize="17sp" />
 
     </LinearLayout>

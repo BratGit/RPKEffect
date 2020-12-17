@@ -18,7 +18,7 @@
     <string name="menu_sec">Поставщик 2</string>
     <string name="menu_third">Поставщик 3</string>
     <string name="profile">Профиль</string>
-    <string name="about_app">Система контроля \nобновления остатков</string>
+    <string name="about_app">Добро пожаловать в систему контроля обновления остатков RPKEffect</string>
 
     <string name="check">Проверить</string>
     <string name="confirmed">Подтвердить</string>
@@ -32,7 +32,8 @@
     <string name="date">Дата</string>
     <string name="ip">IP-адрес</string>
     <string name="user_list">Список пользователей</string>
-    <string name="registration">Регистрация</string>
+    <string name="registration">Зарегистрируйтесь</string>
+    <string name="no_account">Нет аккаунта?</string>
     <string name="authorization">Авторизация</string>
     <string name="confirm">Подтверждение</string>
     <string name="reject">Отклонить</string>

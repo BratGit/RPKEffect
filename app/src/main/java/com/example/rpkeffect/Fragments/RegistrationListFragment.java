@@ -49,7 +49,7 @@ public class RegistrationListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.registration_list_fragment, container, false);
+        root = inflater.inflate(R.layout.fragment_registration_list, container, false);
 
         registrationListView = (ListView) root.findViewById(R.id.registrationListView);
         request = new Request();

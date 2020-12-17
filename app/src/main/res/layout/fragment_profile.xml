@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/darkGray">
+    android:background="@color/white">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
@@ -26,8 +26,8 @@
             android:layout_marginBottom="10dp"
             android:text="@string/login"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:fontFamily="@font/sfui_regular"
+            android:textColor="@color/textBlack"/>
 
         <TextView
             android:id="@+id/name"
@@ -36,7 +36,8 @@
             android:layout_marginBottom="10dp"
             android:text="@string/profile"
             android:textSize="16sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/textBlack"
+            android:fontFamily="@font/sfui_regular"/>
 
         <Button
             android:id="@+id/exit_button"
@@ -46,6 +47,8 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="@string/exit"
+            android:textAllCaps="false"
+            android:fontFamily="@font/sfui_semibold"
             android:textColor="#fff" />
 
     </LinearLayout>

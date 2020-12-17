@@ -58,7 +58,7 @@ public class UserAdapter extends BaseAdapter {
         if(user.getImage() != null)
             Glide.with(convertView).load(String.valueOf(user.getImage())).into(civ);
         else
-            civ.setImageResource(R.drawable.user);
+            civ.setImageResource(R.drawable.ic_user);
         mail.setText(user.getMail());
         name.setText(user.getName());
         date.setText(user.getDate());

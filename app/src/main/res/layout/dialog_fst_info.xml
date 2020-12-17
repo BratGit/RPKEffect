@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     app:cardCornerRadius="20dp"
-    app:cardBackgroundColor="@color/darkGray">
+    app:cardBackgroundColor="@color/gray">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -32,8 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/success"
-            android:textColor="@color/green"
-            android:fontFamily="sans-serif-light"/>
+            android:textColor="@color/turquoise"
+            android:fontFamily="@font/sfui_semibold"/>
 
         <TextView
             android:id="@+id/fst_success"
@@ -41,43 +41,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_regular"
             android:text="@string/success"
-            android:textColor="@color/green"
+            android:textColor="@color/turquoise"
             android:textSize="30sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fail"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/red"/>
+            android:fontFamily="@font/sfui_semibold"
+            android:textColor="@color/cherry"/>
 
         <TextView
             android:id="@+id/fst_fail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_regular"
             android:text="@string/fail"
-            android:textColor="@color/red"
+            android:textColor="@color/cherry"
             android:textSize="30sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/total"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/yellow"/>
+            android:fontFamily="@font/sfui_semibold"
+            android:textColor="@color/sea"/>
 
         <TextView
             android:id="@+id/fst_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_regular"
             android:text="@string/total"
-            android:textColor="@color/yellow"
+            android:textColor="@color/sea"
             android:textSize="30sp" />
 
         <com.anychart.AnyChartView

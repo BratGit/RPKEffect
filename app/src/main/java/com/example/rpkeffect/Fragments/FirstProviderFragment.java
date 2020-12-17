@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -93,7 +94,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         spinner = root.findViewById(R.id.spinner_filter);
         swipeRefreshLayout = root.findViewById(R.id.swipe_refresh_layout);
         mProducts = new ArrayList<>();
-        adapter = new ProductAdapter(getLayoutInflater(), mProducts);
+        adapter = new ProductAdapter(getActivity(), getLayoutInflater(), mProducts);
         listView.setAdapter(adapter);
 
 
@@ -207,7 +208,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
             }
         });
 
-        swipeRefreshLayout.setColorSchemeResources(R.color.red);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark);
 
         return root;
     }
@@ -236,11 +237,11 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         name = (TextView) dialog.findViewById(R.id.product_name);
         status = (TextView) dialog.findViewById(R.id.product_status);
 
-        if (mProducts.get(position).getName().equals("Нет товара")) name.setTextColor(Color.RED);
-        else name.setTextColor(Color.GREEN);
+        if (mProducts.get(position).getName().equals("Нет товара")) name.setTextColor(ContextCompat.getColor(getActivity(), R.color.cherry));
+        else name.setTextColor(ContextCompat.getColor(getActivity(), R.color.turquoise));
 
-        if (mProducts.get(position).getStatus().equals("10")) status.setTextColor(Color.RED);
-        else status.setTextColor(Color.WHITE);
+        if (mProducts.get(position).getStatus().equals("10")) status.setTextColor(ContextCompat.getColor(getActivity(), R.color.cherry));
+        else status.setTextColor(ContextCompat.getColor(getActivity(), R.color.turquoise));
 
         name.setText(mProducts.get(position).getName());
         code.setText(mProducts.get(position).getCode());

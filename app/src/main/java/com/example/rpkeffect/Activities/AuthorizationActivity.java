@@ -107,20 +107,21 @@ public class AuthorizationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Bundle bundle = null;
 
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-                    View view = findViewById(R.id.auth_logo);
-                    if (view != null) {
-                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AuthorizationActivity.this, view, getString(R.string.transition));
-                        bundle = options.toBundle();
-                    }
-                }
-
-                Intent intent = new Intent(AuthorizationActivity.this, RegistrationActivity.class);
-                if (bundle == null) {
-                    startActivity(intent);
-                } else {
-                    startActivity(intent, bundle);
-                }
+//                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+//                    View view = findViewById(R.id.auth_logo);
+//                    if (view != null) {
+//                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AuthorizationActivity.this, view, getString(R.string.transition));
+//                        bundle = options.toBundle();
+//                    }
+//                }
+//
+//                Intent intent = new Intent(AuthorizationActivity.this, RegistrationActivity.class);
+//                if (bundle == null) {
+//                    startActivity(intent);
+//                } else {
+//                    startActivity(intent, bundle);
+//                }
+                startActivity(new Intent(AuthorizationActivity.this, RegistrationActivity.class));
             }
         });
 

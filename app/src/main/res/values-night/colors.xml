@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#d9225e</color>
-    <color name="colorPrimaryDark">#4082f1</color>
+    <color name="colorPrimary">#4082f1</color>
+    <color name="colorPrimaryDark">#d9225e</color>
     <color name="colorAccent">#45cab1</color>
-    <drawable name="gradient_background">@drawable/gradient</drawable>
-    <color name="status_bar">#4082f1</color>
+    <drawable name="gradient_background">@drawable/gradient_night</drawable>
     <color name="red">#E53935</color>
+    <color name="status_bar">#d9225e</color>
     <color name="cherry">#d9225e</color>
     <color name="sea">#4082f1</color>
     <color name="turquoise">#45cab1</color>
     <color name="green">#64DD17</color>
     <color name="yellow">#FFD600</color>
-    <color name="lightGray">#E7E4E5</color>
-    <color name="gray">#E7E4E5</color>
+    <color name="lightGray">#000</color>
+    <color name="gray">#272727</color>
     <color name="darkGray">#272727</color>
-    <color name="white">#fff</color>
-    <color name="textWhite">#fff</color>
+    <color name="white">#272727</color>
+    <color name="textWhite">#000</color>
     <color name="black">#000</color>
-    <color name="textBlack">#000</color>
+    <color name="textBlack">#fff</color>
 </resources>

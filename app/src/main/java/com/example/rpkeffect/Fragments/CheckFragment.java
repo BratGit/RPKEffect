@@ -38,7 +38,7 @@ public class CheckFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.check_fragment, container, false);
+        View root = inflater.inflate(R.layout.fragment_check, container, false);
 
         next = root.findViewById(R.id.next);
         close = root.findViewById(R.id.close);
@@ -69,7 +69,9 @@ public class CheckFragment extends Fragment {
                                         .replace(R.id.layout_registration, confirmPasswordFragment, ConfirmPasswordFragment.TAG)
                                         .commit();
                             }
+
                         }
+                        Snackbar.make(snackView, R.string.auth_failed, Snackbar.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -77,7 +79,7 @@ public class CheckFragment extends Fragment {
 
                     }
                 });
-                Snackbar.make(snackView, R.string.auth_failed, Snackbar.LENGTH_SHORT).show();
+
             }
         });
 

@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     app:cardCornerRadius="20dp"
-    app:cardBackgroundColor="@color/darkGray">
+    app:cardBackgroundColor="@color/gray">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -30,8 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif-light"/>
+            android:textColor="@color/textBlack"
+            android:fontFamily="@font/sfui_semibold"/>
 
         <TextView
             android:textAlignment="center"
@@ -39,43 +39,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_regular"
             android:text="@string/login"
-            android:textColor="@color/white"
+            android:textColor="@color/textBlack"
             android:textSize="30sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ip"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/white"/>
+            android:fontFamily="@font/sfui_semibold"
+            android:textColor="@color/textBlack"/>
 
         <TextView
             android:id="@+id/confirm_ip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="sfui_regular"
             android:text="@string/ip"
-            android:textColor="@color/white"
+            android:textColor="@color/textBlack"
             android:textSize="30sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/date"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/white"/>
+            android:fontFamily="@font/sfui_semibold"
+            android:textColor="@color/textBlack"/>
 
         <TextView
             android:id="@+id/confirm_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="sfui_regular"
             android:text="@string/date"
-            android:textColor="@color/white"
+            android:textColor="@color/textBlack"
             android:textSize="30sp" />
 
         <RelativeLayout
@@ -123,7 +123,6 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="15dp"
                 android:background="@drawable/button_background_cancel"/>
-
 
         </RelativeLayout>
 

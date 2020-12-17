@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     app:cardCornerRadius="20dp"
-    app:cardBackgroundColor="@color/darkGray">
+    app:cardBackgroundColor="@color/gray">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -32,8 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/name"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif-light"/>
+            android:textColor="@color/textBlack"
+            android:fontFamily="@font/sfui_semibold"/>
 
         <TextView
             android:id="@+id/product_name"
@@ -41,60 +41,60 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_regular"
             android:text="@string/name"
-            android:textColor="@color/white"
+            android:textColor="@color/textBlack"
             android:textSize="30sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/status"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/white"/>
+            android:fontFamily="@font/sfui_semibold"
+            android:textColor="@color/textBlack"/>
 
         <TextView
             android:id="@+id/product_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_regular"
             android:text="@string/status"
-            android:textColor="@color/white"
+            android:textColor="@color/textBlack"
             android:textSize="30sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/article"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/white"/>
+            android:fontFamily="@font/sfui_semibold"
+            android:textColor="@color/textBlack"/>
 
         <TextView
             android:id="@+id/product_article"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_regular"
             android:text="@string/article"
-            android:textColor="@color/white"
+            android:textColor="@color/textBlack"
             android:textSize="30sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/code"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/white"/>
+            android:fontFamily="@font/sfui_semibold"
+            android:textColor="@color/textBlack"/>
 
         <TextView
             android:id="@+id/product_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/sfui_regular"
             android:text="@string/code"
-            android:textColor="@color/white"
+            android:textColor="@color/textBlack"
             android:textSize="30sp" />
 
     </LinearLayout>

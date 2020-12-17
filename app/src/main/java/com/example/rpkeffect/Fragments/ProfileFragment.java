@@ -44,7 +44,7 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.profile_fragment, container, false);
+        View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -89,7 +89,7 @@ public class ProfileFragment extends Fragment {
             });
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
-            civ.setImageResource(R.drawable.user);
+            civ.setImageResource(R.drawable.ic_user);
         }
     }
 

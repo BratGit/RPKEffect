@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@color/darkGray">
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/user" />
+            android:src="@drawable/ic_user" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -31,7 +31,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
-                android:textColor="@color/white"
+                android:textColor="@color/textBlack"
+                android:fontFamily="@font/sfui_semibold"
                 android:text="@string/login" />
 
             <TextView
@@ -39,16 +40,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
-                android:textColor="@color/white"
+                android:textColor="@color/textBlack"
                 android:text="@string/date"/>
 
             <TextView
                 android:id="@+id/request_ip"
-                android:textStyle="italic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:textColor="@color/white"
+                android:textColor="@color/textBlack"
+                android:fontFamily="@font/sfui_regular"
                 android:text="@string/ip"/>
 
         </LinearLayout>

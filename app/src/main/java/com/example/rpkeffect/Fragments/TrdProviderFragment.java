@@ -14,7 +14,7 @@ import com.example.rpkeffect.R;
 public class TrdProviderFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        View root = inflater.inflate(R.layout.fragment_third, container, false);
         final TextView textView = root.findViewById(R.id.text_third);
         textView.setText("Поставщик 3");
         return root;

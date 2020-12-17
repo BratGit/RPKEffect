@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/darkGray"
+        android:background="@drawable/layout_background"
         tools:ignore="UselessParent">
 
         <RelativeLayout
@@ -25,7 +25,7 @@
                 android:layout_height="50dp"
                 android:background="@drawable/button_background_next"
                 android:contentDescription="@string/close"
-                android:src="@drawable/ic_baseline_close_24_white" />
+                android:src="@drawable/ic_baseline_close_24" />
 
             <Button
                 android:id="@+id/next"
@@ -34,8 +34,9 @@
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/button_background_next"
                 android:text="@string/check"
-                android:textColor="@color/white"
-                android:fontFamily="sans-serif-light"
+                android:textColor="@color/textBlack"
+                android:fontFamily="@font/sfui_regular"
+                android:textAllCaps="false"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"/>
 
@@ -46,18 +47,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:textColorHint="@color/lightGray">
+            android:textColorHint="@color/textBlack">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/check_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/login"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="@font/sfui_regular"
                 android:imeOptions="actionNext"
                 android:inputType="textPersonName"
-                android:textColor="@color/white"
-                android:textColorHint="@color/lightGray" />
+                android:textColor="@color/textBlack"
+                android:textColorHint="@color/textBlack" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
