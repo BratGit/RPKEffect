@@ -40,4 +40,10 @@
         android:name="com.example.rpkeffect.Fragments.RegistrationListFragment"
         android:label="@string/registration_list"
         tools:layout="@layout/fragment_registration_list"/>
+
+    <fragment
+        android:id="@+id/nav_switcher"
+        android:name="com.example.rpkeffect.Fragments.SwitcherFragment"
+        android:label="@string/theme"
+        tools:layout="@layout/fragment_switcher"/>
 </navigation>

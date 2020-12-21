@@ -97,6 +97,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         adapter = new ProductAdapter(getActivity(), getLayoutInflater(), mProducts);
         listView.setAdapter(adapter);
 
+        //TODO Сделать адаптируемый спиннер под тёмную тему
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

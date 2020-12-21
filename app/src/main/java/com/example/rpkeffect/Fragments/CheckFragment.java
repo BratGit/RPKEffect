@@ -45,7 +45,6 @@ public class CheckFragment extends Fragment {
         email = root.findViewById(R.id.check_email);
         snackView = root.findViewById(R.id.check_fragment);
         myRef = database.getReference("confirmed");
-        confirmPasswordFragment = new ConfirmPasswordFragment();
 
         final FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
 
@@ -59,6 +58,7 @@ public class CheckFragment extends Fragment {
                         for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                             Request request = userSnapshot.getValue(Request.class);
                             if (request.getEmail().equals(email.getText().toString().replaceAll(" ", ""))){
+                                confirmPasswordFragment = new ConfirmPasswordFragment();
                                 Bundle bundle = new Bundle();
                                 bundle.putString("email", email.getText().toString().replaceAll(" ", ""));
                                 confirmPasswordFragment.setArguments(bundle);
@@ -71,17 +71,16 @@ public class CheckFragment extends Fragment {
                             }
 
                         }
-                        Snackbar.make(snackView, R.string.auth_failed, Snackbar.LENGTH_SHORT).show();
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });
-
             }
         });
+
+
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override

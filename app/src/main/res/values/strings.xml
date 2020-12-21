@@ -65,6 +65,9 @@
     <string name="required">Обязательное поле</string>
     <string name="via_email">Войти по email</string>
     <string name="or_auth_with">или авторизоваться с помощью</string>
+    <string name="dark_theme">Тёмная тема</string>
+    <string name="system_color">Использовать системные настройки</string>
+    <string name="theme">Настройка темы</string>
 
     <string-array name="filter_type">
         <item>По умолчанию</item>

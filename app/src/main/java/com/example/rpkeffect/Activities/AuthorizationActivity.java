@@ -19,8 +19,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.rpkeffect.R;
+import com.example.rpkeffect.Utils.SaveState;
 import com.example.rpkeffect.Utils.Utils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -47,6 +49,7 @@ public class AuthorizationActivity extends AppCompatActivity {
     TextView gotoRegistration;
     EditText login, password;
     Button enter;
+    SaveState saveState;
     private static final String TAG = "myLog";
 
     GoogleSignInClient mGoogleSignInClient;
@@ -94,6 +97,15 @@ public class AuthorizationActivity extends AppCompatActivity {
         checkForSignedUp();
 
         setContentView(R.layout.activity_authorization);
+
+        saveState = new SaveState(this);
+//        Log.d("myLog", "darkMode " + saveState.getState());
+        if (saveState.getState() == saveState.DARK_MODE_YES)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        else if (saveState.getState() == saveState.DARK_MODE_NO)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        else if (saveState.getState() == saveState.DARK_MODE_USE_SYSTEM)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
 //        showProgressDialog();
 //        if(!checkForSignedUp())

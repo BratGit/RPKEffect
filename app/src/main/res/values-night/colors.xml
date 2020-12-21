@@ -3,7 +3,6 @@
     <color name="colorPrimary">#4082f1</color>
     <color name="colorPrimaryDark">#d9225e</color>
     <color name="colorAccent">#45cab1</color>
-    <drawable name="gradient_background">@drawable/gradient_night</drawable>
     <color name="red">#E53935</color>
     <color name="status_bar">#d9225e</color>
     <color name="cherry">#d9225e</color>
@@ -18,4 +17,7 @@
     <color name="textWhite">#000</color>
     <color name="black">#000</color>
     <color name="textBlack">#fff</color>
+
+    <drawable name="gradient_background">@drawable/gradient_night</drawable>
+    <drawable name="switcher">@drawable/ic_dark_mode</drawable>
 </resources>

@@ -28,5 +28,9 @@
             android:id="@+id/nav_registrate_list"
             android:icon="@drawable/ic_baseline_person_add_24"
             android:title="@string/registration_list"/>
+        <item
+            android:id="@+id/nav_switcher"
+            android:icon="@drawable/ic_switcher"
+            android:title="@string/theme"/>
     </group>
 </menu>
