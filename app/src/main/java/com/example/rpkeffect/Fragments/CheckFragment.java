@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rpkeffect.R;
@@ -26,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class CheckFragment extends Fragment {
+    FragmentTransaction fm;
     public static final String TAG = "myLog";
     ImageButton close;
     Button next;
@@ -33,22 +36,26 @@ public class CheckFragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
     EditText email;
+    View view;
     View snackView;
+    int auth = 0;
+    final int AUTH_FAIL = 0;
+    final int AUTH_SUCCESS = 1;
+    final int AUTH_POST_SUCCESS = 2;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_check, container, false);
-
+        final View root = inflater.inflate(R.layout.fragment_check, container, false);
+        fm = getActivity().getSupportFragmentManager().beginTransaction();
         next = root.findViewById(R.id.next);
         close = root.findViewById(R.id.close);
         email = root.findViewById(R.id.check_email);
         snackView = root.findViewById(R.id.check_fragment);
         myRef = database.getReference("confirmed");
+        view = root.findViewById(R.id.check_fragment);
 
-        final FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
-
-        //TODO сделать разделение между строками "Заявка на рассмотрении" и "Вы не подавали заявку"
+        //TODO fix bug with snackbar
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,21 +64,34 @@ public class CheckFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                             Request request = userSnapshot.getValue(Request.class);
-                            if (request.getEmail().equals(email.getText().toString().replaceAll(" ", ""))){
-                                confirmPasswordFragment = new ConfirmPasswordFragment();
-                                Bundle bundle = new Bundle();
-                                bundle.putString("email", email.getText().toString().replaceAll(" ", ""));
-                                confirmPasswordFragment.setArguments(bundle);
-                                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                                imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
-                                fm
-                                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_in_right)
-                                        .replace(R.id.layout_registration, confirmPasswordFragment, ConfirmPasswordFragment.TAG)
-                                        .commit();
+                            if (request.getEmail().equals(email.getText().toString().replaceAll(" ", ""))) {
+                                auth = AUTH_SUCCESS;
                             }
-
+                        }
+                        if (auth == AUTH_SUCCESS) {
+                            confirmPasswordFragment = new ConfirmPasswordFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("email", email.getText().toString().replaceAll(" ", ""));
+                            confirmPasswordFragment.setArguments(bundle);
+                            Log.d(TAG, "onDataChange: calling commit");
+                            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            fragmentTransaction
+                                    .remove(CheckFragment.this)
+                                    .commit();
+                            fm
+                                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_in_right)
+                                    .replace(R.id.layout_registration, confirmPasswordFragment, ConfirmPasswordFragment.TAG)
+                                    .commit();
+                            auth = AUTH_POST_SUCCESS;
+                        }
+                        else if (auth == AUTH_FAIL){
+                            Snackbar.make(
+                                    view, "Данной подтверждённой заявки не найдено",
+                                    Snackbar.LENGTH_SHORT)
+                                    .show();
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
@@ -80,8 +100,6 @@ public class CheckFragment extends Fragment {
             }
         });
 
-
-
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +107,6 @@ public class CheckFragment extends Fragment {
                         .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_in_bottom)
                         .remove(CheckFragment.this)
                         .commit();
-                Log.d(TAG, "fragment removed");
             }
         });
 

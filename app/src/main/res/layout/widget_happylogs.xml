@@ -9,11 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="5dp">
 
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            android:layout_width="15dp"
+            android:layout_height="20dp"
             android:src="@drawable/logo" />
 
         <TextView
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:textSize="10sp"
             android:text="@string/menu_first"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:layout_gravity="center_vertical"
             android:textColor="@color/cherry"
             android:fontFamily="@font/sfui_bold"/>
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sfui_regular"
-            android:text="@string/success"
+            android:text="0"
             android:textColor="@color/turquoise"
             android:textSize="17sp" />
 
@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sfui_regular"
-            android:text="@string/fail"
+            android:text="0"
             android:textColor="@color/cherry"
             android:textSize="17sp" />
 
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sfui_regular"
-            android:text="@string/total"
+            android:text="0"
             android:textColor="@color/sea"
             android:textSize="17sp" />
 

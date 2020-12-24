@@ -63,6 +63,8 @@ public class ConfirmPasswordFragment extends Fragment {
         final FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_in_bottom);
 
+        //TODO fix validate form
+
         if (email != null && validateForm()) {
             create.setOnClickListener(new View.OnClickListener() {
                 @Override
