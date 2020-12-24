@@ -2,6 +2,7 @@ package com.example.rpkeffect.Fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,15 @@ import androidx.fragment.app.Fragment;
 
 import com.example.rpkeffect.R;
 import com.example.rpkeffect.Utils.SaveState;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class SwitcherFragment extends Fragment {
     SwitchCompat switchCompat;
     CheckBox checkBox;
     SaveState saveState;
+    View snackView;
+    int useSystem;
 
     @Nullable
     @Override
@@ -32,6 +37,7 @@ public class SwitcherFragment extends Fragment {
 
         switchCompat = root.findViewById(R.id.switcher);
         checkBox = root.findViewById(R.id.checkbox);
+        snackView = root.findViewById(R.id.fragment_switcher);
 
         if (saveState.getState() == saveState.DARK_MODE_YES)
             switchCompat.setChecked(true);
@@ -48,19 +54,10 @@ public class SwitcherFragment extends Fragment {
                 if (isChecked){
                     saveState.setState(saveState.DARK_MODE_USE_SYSTEM);
                     switchCompat.setEnabled(false);
-                    ((AppCompatActivity)getActivity()).getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                 } else {
                     switchCompat.setEnabled(true);
-                    if (switchCompat.isChecked()) {
-                        ((AppCompatActivity) getActivity()).getDelegate()
-                                .setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                        saveState.setState(saveState.DARK_MODE_YES);
-                    }
-                    else
-                        ((AppCompatActivity)getActivity()).getDelegate()
-                                .setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    saveState.setState(saveState.DARK_MODE_NO);
                 }
+                switcher();
             }
         });
 
@@ -69,16 +66,32 @@ public class SwitcherFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     saveState.setState(saveState.DARK_MODE_YES);
-                    ((AppCompatActivity)getActivity()).getDelegate()
-                            .setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 } else {
                     saveState.setState(saveState.DARK_MODE_NO);
-                    ((AppCompatActivity)getActivity()).getDelegate()
-                            .setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 }
+                switcher();
             }
         });
 
         return root;
+    }
+
+    private void switcher(){
+        switch(saveState.getState()){
+            case 0://NIGHT_MODE_NO
+                ((AppCompatActivity)getActivity()).getDelegate()
+                            .setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+            case 1://NIGHT_MODE_YES
+                ((AppCompatActivity)getActivity()).getDelegate()
+                        .setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+            case 2://NIGHT_MODE_FOLLOW_SYSTEM
+                if (checkBox.isChecked())
+                    Snackbar.make(snackView, "Изменения вступят в силу после перезапускка приложения",
+                        Snackbar.LENGTH_SHORT).show();
+                break;
+        }
+        useSystem++;
     }
 }

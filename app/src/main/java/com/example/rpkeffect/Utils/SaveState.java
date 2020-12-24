@@ -23,6 +23,6 @@ public class SaveState {
     }
 
     public int getState(){
-        return sharedPreferences.getInt("dark_mode", 2);
+        return sharedPreferences.getInt("dark_mode", DARK_MODE_USE_SYSTEM);
     }
 }
