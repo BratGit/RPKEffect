@@ -106,6 +106,8 @@ public class AuthorizationActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         else if (saveState.getState() == saveState.DARK_MODE_USE_SYSTEM)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        else if (saveState.getState() == saveState.DARK_MODE_TIME)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_TIME);
 
 //        showProgressDialog();
 //        if(!checkForSignedUp())

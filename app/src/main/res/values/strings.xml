@@ -66,7 +66,9 @@
     <string name="via_email">Войти по email</string>
     <string name="or_auth_with">или авторизоваться с помощью</string>
     <string name="dark_theme">Тёмная тема</string>
+    <string name="light_theme">Светлая тема</string>
     <string name="system_color">Использовать системные настройки</string>
+    <string name="schedule">По раписанию(beta)</string>
     <string name="theme">Настройка темы</string>
 
     <string-array name="filter_type">

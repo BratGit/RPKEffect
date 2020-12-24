@@ -10,6 +10,7 @@ public class SaveState {
     public final int DARK_MODE_NO = 0;
     public final int DARK_MODE_YES = 1;
     public final int DARK_MODE_USE_SYSTEM = 2;
+    public final int DARK_MODE_TIME = 3;
 
     public SaveState(Context context) {
         this.context = context;

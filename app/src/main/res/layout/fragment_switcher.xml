@@ -13,23 +13,47 @@
         android:src="@drawable/switcher"
         android:contentDescription="@string/dark_theme"/>
 
-    <CheckBox
-        android:id="@+id/checkbox"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/system_color"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/sfui_semibold"
-        android:textColor="@color/textBlack"
-        />
+        android:layout_marginStart="20dp">
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switcher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dark_theme"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/sfui_semibold"
-        android:textColor="@color/textBlack" />
+        <RadioButton
+            android:id="@+id/rb_system"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/system_color"
+            android:fontFamily="@font/sfui_semibold"
+            android:textColor="@color/textBlack"/>
+
+        <RadioButton
+            android:id="@+id/rb_time"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule"
+            android:fontFamily="@font/sfui_semibold"
+            android:textColor="@color/textBlack"/>
+
+        <RadioButton
+            android:id="@+id/rb_dark"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dark_theme"
+            android:fontFamily="@font/sfui_semibold"
+            android:textColor="@color/textBlack"/>
+
+        <RadioButton
+            android:id="@+id/rb_light"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/light_theme"
+            android:fontFamily="@font/sfui_semibold"
+            android:textColor="@color/textBlack"/>
+
+    </RadioGroup>
 
 </LinearLayout>

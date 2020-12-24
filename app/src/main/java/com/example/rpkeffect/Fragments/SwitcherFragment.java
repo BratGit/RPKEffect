@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,8 +23,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SwitcherFragment extends Fragment {
-    SwitchCompat switchCompat;
-    CheckBox checkBox;
+    RadioButton time, system, light, dark;
     SaveState saveState;
     View snackView;
     int useSystem;
@@ -35,41 +35,58 @@ public class SwitcherFragment extends Fragment {
 
         saveState = new SaveState(getContext());
 
-        switchCompat = root.findViewById(R.id.switcher);
-        checkBox = root.findViewById(R.id.checkbox);
+        time = root.findViewById(R.id.rb_time);
+        system = root.findViewById(R.id.rb_system);
+        light = root.findViewById(R.id.rb_light);
+        dark = root.findViewById(R.id.rb_dark);
         snackView = root.findViewById(R.id.fragment_switcher);
 
         if (saveState.getState() == saveState.DARK_MODE_YES)
-            switchCompat.setChecked(true);
+            dark.setChecked(true);
         else if (saveState.getState() == saveState.DARK_MODE_NO)
-            switchCompat.setChecked(false);
-        else if (saveState.getState() == saveState.DARK_MODE_USE_SYSTEM){
-            switchCompat.setEnabled(false);
-            checkBox.setChecked(true);
-        }
+            light.setChecked(true);
+        else if (saveState.getState() == saveState.DARK_MODE_USE_SYSTEM)
+            system.setChecked(true);
+        else if (saveState.getState() == saveState.DARK_MODE_TIME)
+            time.setChecked(true);
 
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        dark.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    saveState.setState(saveState.DARK_MODE_USE_SYSTEM);
-                    switchCompat.setEnabled(false);
-                } else {
-                    switchCompat.setEnabled(true);
+                if (dark.isChecked()) {
+                    saveState.setState(saveState.DARK_MODE_YES);
+                    switcher();
                 }
-                switcher();
             }
         });
 
-        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        light.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    saveState.setState(saveState.DARK_MODE_YES);
-                } else {
+                if (light.isChecked()) {
                     saveState.setState(saveState.DARK_MODE_NO);
+                    switcher();
                 }
-                switcher();
+            }
+        });
+
+        system.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (system.isChecked()) {
+                    saveState.setState(saveState.DARK_MODE_USE_SYSTEM);
+                    switcher();
+                }
+            }
+        });
+
+        time.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (time.isChecked()) {
+                    saveState.setState(saveState.DARK_MODE_TIME);
+                    switcher();
+                }
             }
         });
 
@@ -87,9 +104,12 @@ public class SwitcherFragment extends Fragment {
                         .setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 break;
             case 2://NIGHT_MODE_FOLLOW_SYSTEM
-                if (checkBox.isChecked())
-                    Snackbar.make(snackView, "Изменения вступят в силу после перезапускка приложения",
+                Snackbar.make(snackView, "Изменения вступят в силу после перезапускка приложения",
                         Snackbar.LENGTH_SHORT).show();
+                break;
+            case 3://NIGHT_MODE_AUTO_TIME
+                ((AppCompatActivity)getActivity()).getDelegate()
+                        .setLocalNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_TIME);
                 break;
         }
         useSystem++;
