@@ -65,39 +65,16 @@ public class ConfirmPasswordFragment extends Fragment {
 
         //TODO fix validate form
 
-        if (email != null && validateForm()) {
-            create.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mAuth.createUserWithEmailAndPassword(email, password.getText().toString().replaceAll(" ", ""))
-                            .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
 
-                                    myRef.addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                                                Request request = userSnapshot.getValue(Request.class);
-                                                if (request.getEmail().equals(email)) userSnapshot.getRef().removeValue();
-                                            }
-
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                        }
-                                    });
-
-                                    Snackbar.make(snackView, R.string.added, Snackbar.LENGTH_SHORT).show();
-                                    getActivity().finish();
-                                }
-                            });
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (email != null && validateForm()) {
+                    createMail();
                 }
-            });
-        }
+            }
+        });
+
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,21 +89,45 @@ public class ConfirmPasswordFragment extends Fragment {
 
     private boolean validateForm() {
         boolean validate = true;
-
+        if (!password.getText().toString().equals(confirm.getText().toString())) {
+            password.setError("Пароли не совпадают");
+            validate = false;
+        }
         if (containsCyrillic(password.getText().toString())) {
             password.setError("Пароль не должен содержать кириллицу");
             validate = false;
-
-            if (!password.getText().toString().equals(confirm.getText().toString())) {
-                password.setError("Пароли не совпадают");
-                validate = false;
-            }
-        } else {
-            password.setError(null);
-            validate = true;
         }
-
         return validate;
+    }
+
+    private void createMail() {
+        mAuth.createUserWithEmailAndPassword(email, password.getText().toString().replaceAll(" ", ""))
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+
+                        myRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                    Request request = userSnapshot.getValue(Request.class);
+                                    if (request.getEmail().equals(email))
+                                        userSnapshot.getRef().removeValue();
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        Snackbar.make(snackView, R.string.added, Snackbar.LENGTH_SHORT).show();
+                        getActivity().finish();
+                    }
+                });
+
     }
 
     private boolean containsCyrillic(String s) {

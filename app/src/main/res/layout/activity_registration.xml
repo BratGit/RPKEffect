@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_registration"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,78 +8,78 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@drawable/layout_background_registration"
+        android:orientation="vertical"
+        android:padding="5dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/sfui_semibold"
+            android:text="@string/registration"
+            android:textColor="@color/textBlack"
+            android:textSize="30sp" />
 
-        </RelativeLayout>
-
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:background="@drawable/layout_background_registration">
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColorHint="@color/textBlack">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginBottom="25dp"
-                android:fontFamily="@font/sfui_semibold"
-                android:text="@string/registration"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/loginRegistration"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/sfui_regular"
+                android:hint="@string/login"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
                 android:textColor="@color/textBlack"
-                android:textSize="30sp" />
+                android:textColorHint="@color/textBlack" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:textColorHint="@color/textBlack">
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/loginRegistration"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/sfui_regular"
-                    android:hint="@string/login"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/textBlack"
-                    android:textColorHint="@color/textBlack" />
+        <Button
+            android:id="@+id/button_registration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/sfui_regular"
+            android:text="@string/to_registrate"
+            android:textAllCaps="false"
+            android:textColor="#fff" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/button_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_background_check"
+            android:fontFamily="@font/sfui_regular"
+            android:text="@string/confirm_check"
+            android:textAllCaps="false"
+            android:textColor="#fff" />
 
-            <Button
-                android:id="@+id/button_registration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_background"
-                android:fontFamily="@font/sfui_regular"
-                android:text="@string/to_registrate"
-                android:textAllCaps="false"
-                android:textColor="#fff" />
-
-            <Button
-                android:id="@+id/button_check"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/button_background_check"
-                android:fontFamily="@font/sfui_regular"
-                android:text="@string/confirm_check"
-                android:textAllCaps="false"
-                android:textColor="#fff" />
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/btn_info_registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="30dp"
+            android:drawableEnd="@drawable/ic_info_2"
+            android:drawablePadding="3dp"
+            android:fontFamily="@font/sfui_semibold"
+            android:text="@string/registration_process"
+            android:textAllCaps="false" />
 
     </LinearLayout>
 

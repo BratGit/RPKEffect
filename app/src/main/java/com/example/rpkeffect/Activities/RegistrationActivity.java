@@ -2,6 +2,7 @@ package com.example.rpkeffect.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -37,7 +38,7 @@ public class RegistrationActivity extends AppCompatActivity {
     DatabaseReference myRef;
     View snackView;
     CheckFragment checkFragment;
-    Button registrate, check;
+    Button registrate, check, btn_info_registration;
 //    ImageButton back;
     String ip, date;
 
@@ -54,6 +55,14 @@ public class RegistrationActivity extends AppCompatActivity {
         login = findViewById(R.id.loginRegistration);
         registrate = findViewById(R.id.button_registration);
         check = findViewById(R.id.button_check);
+        btn_info_registration = findViewById(R.id.btn_info_registration);
+
+        btn_info_registration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegistrationActivity.this, RegistrationInfoActivity.class));
+            }
+        });
 
         check.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -87,6 +87,7 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
 
     public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_first, container, false);
+        String[] filters = {"По умолчанию", "Показывать только ошибки", "Показывать только успешные"};
         listView = root.findViewById(R.id.fst_listview);
         getJson = root.findViewById(R.id.get_json_btn);
         getInfo = root.findViewById(R.id.get_info_btn);
@@ -96,15 +97,15 @@ public class FirstProviderFragment extends Fragment implements JsonTaskListener,
         mProducts = new ArrayList<>();
         adapter = new ProductAdapter(getActivity(), getLayoutInflater(), mProducts);
         listView.setAdapter(adapter);
-
-        //TODO Сделать адаптируемый спиннер под тёмную тему
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(),
+                R.layout.item_filter_spinner, R.id.filter_name, filters);
+        spinner.setAdapter(spinnerAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mProducts.clear();
                 adapter.notifyDataSetChanged();
-                Toast.makeText(getActivity(), spinner.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
                 selectedFilter = position;
                 getValues(selectedFilter);
             }
