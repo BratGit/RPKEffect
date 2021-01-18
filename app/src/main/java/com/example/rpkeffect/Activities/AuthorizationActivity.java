@@ -2,9 +2,13 @@ package com.example.rpkeffect.Activities;
 
 
 import android.app.ActivityOptions;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.NotificationCompat;
 
 import com.example.rpkeffect.R;
 import com.example.rpkeffect.Utils.SaveState;
@@ -48,9 +53,12 @@ public class AuthorizationActivity extends AppCompatActivity {
     CircleImageView image;
     TextView gotoRegistration;
     EditText login, password;
-    Button enter;
+    Button enter, notify;
     SaveState saveState;
     private static final String TAG = "myLog";
+    private static final int NOTIFY_ID = 101;
+    private static final String CHANNEL_ID = "CHANNEL_ID";
+
 
     GoogleSignInClient mGoogleSignInClient;
     SignInButton signin;
@@ -141,6 +149,42 @@ public class AuthorizationActivity extends AppCompatActivity {
 
         signin = findViewById(R.id.sign_in_button);
 
+        notify = findViewById(R.id.notifyButton);
+        notify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    NotificationManager notificationManager = (NotificationManager) getSystemService(
+                            Context.NOTIFICATION_SERVICE);
+                    NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Channel", NotificationManager.IMPORTANCE_HIGH);
+                    channel.setDescription("My channel description");
+                    channel.enableVibration(true);
+                    notificationManager.createNotificationChannel(channel);
+
+                    String message = "test";
+                    NotificationCompat.Builder builder = new NotificationCompat
+                            .Builder(AuthorizationActivity.this, channel.getId())
+                            .setSmallIcon(R.drawable.logo)
+                            .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                                    R.drawable.ic_user))
+                            .setContentTitle("New notify")
+                            .setContentText(message)
+                            .setAutoCancel(true);
+                    notificationManager.notify(NOTIFY_ID, builder.build());
+                } else {
+                    String message = "test";
+                    NotificationCompat.Builder builder = new NotificationCompat
+                            .Builder(AuthorizationActivity.this, CHANNEL_ID)
+                            .setSmallIcon(R.drawable.ic_user)
+                            .setContentTitle("New notify")
+                            .setContentText(message)
+                            .setAutoCancel(true);
+                    NotificationManager notificationManager = (NotificationManager) getSystemService(
+                            Context.NOTIFICATION_SERVICE);
+                    notificationManager.notify(NOTIFY_ID, builder.build());
+                }
+            }
+        });
         enter = findViewById(R.id.enterButton);
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,7 +291,6 @@ public class AuthorizationActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
     }
 
     private void signOut() {

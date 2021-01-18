@@ -55,7 +55,6 @@ public class CheckFragment extends Fragment {
         myRef = database.getReference("confirmed");
         view = root.findViewById(R.id.check_fragment);
 
-        //TODO fix bug with snackbar
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

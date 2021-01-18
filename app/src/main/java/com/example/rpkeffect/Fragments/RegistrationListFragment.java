@@ -1,9 +1,11 @@
 package com.example.rpkeffect.Fragments;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +18,19 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.rpkeffect.Activities.AuthorizationActivity;
+import com.example.rpkeffect.Activities.MainActivity;
+import com.example.rpkeffect.Activities.RegistrationActivity;
 import com.example.rpkeffect.R;
 import com.example.rpkeffect.Constructors.Request;
 import com.example.rpkeffect.Adapters.RequestAdapter;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +43,7 @@ import java.util.List;
 
 public class RegistrationListFragment extends Fragment {
     private final static String TAG = "myLog";
+    GoogleSignInClient mGoogleSignInClient;
     LinearLayout snackView;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("registration_list");

@@ -2,6 +2,7 @@ package com.example.rpkeffect.Fragments;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -28,6 +31,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment {
 
     private final static String TAG = "myLog";
+    // Идентификатор уведомления
+    private static final int NOTIFY_ID = 101;
+    // Идентификатор канала
+    private static String CHANNEL_ID = "RPKEffect_new_user";
 
     GoogleSignInAccount signInAccount;
     GoogleSignInClient mGoogleSignInClient;
